@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName body-plus.net
+    ServerAlias www.body-plus.net
+    DocumentRoot /var/www/body-plus.net/public
+    <IfModule mod_rewrite.c>
+        #Rewrite rules to remove index.php from the URL
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ index.php/$1 [L]
+    </IfModule>
+   <Directory /var/www/body-plus.net/public>
+        AllowOverride All
+   </Directory>
+</VirtualHost>
